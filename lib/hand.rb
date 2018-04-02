@@ -30,8 +30,13 @@ class Hand
     cards.each do |card|
       give_up_cards << card if card.value == value
     end
+    give_up_cards.each { |card| self.cards.delete(card) }
+    give_up_cards
   end
 
+  def include?(value)
+    cards.include? { |card| true if card.value == value }
+  end
 
   def add_to_hand(card)
     self.cards << card
